@@ -1,0 +1,26 @@
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  <agm-marker [latitude]="43.942252" [longitude]="10.901259"></agm-marker>
+
+</agm-map>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Targa</th>
+        <th scope="col">Descrizione</th>
+        <th scope="col">Via</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+      <tr *ngFor="let vehicle of vehicles">
+          <th scope="row"><a (click)="setPoint(vehicle.latitude,vehicle.longitude)">F</a></th>
+          <td>{{vehicle.license}}</td>
+          <td>{{vehicle.description}}</td>
+          <td>{{vehicle.street}} </td>
+        </tr>
+     
+    </tbody>
+  </table>
+
