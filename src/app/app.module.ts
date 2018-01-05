@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import {VehicleService} from './services/vehicle.service';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -29,7 +28,8 @@ const routes: Routes = [ {
   imports: [
     BrowserModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyA_W0qvHg9HG7quDxXvkjmeDwMXy8gS-5U'
+      apiKey: 'AIzaSyA_W0qvHg9HG7quDxXvkjmeDwMXy8gS-5U',
+      libraries: ["places"]
     }),
     RouterModule.forRoot(routes) 
   ],

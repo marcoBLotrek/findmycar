@@ -1,8 +1,4 @@
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-  <agm-marker [latitude]="43.942252" [longitude]="10.901259"></agm-marker>
-
-</agm-map>
+<div id="map">aa</div>
 <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -24,3 +20,17 @@
     </tbody>
   </table>
 
+  <form id="calculate-route" name="calculate-route" action="#" method="get">
+    <label for="from">From:</label>
+    <input type="text" id="from" name="from" required="required" placeholder="An address" size="30" />
+    <a id="from-link" href="#">Get my position</a>
+    <br />
+  
+    <label for="to">To:</label>
+    <input type="text" id="to" name="to" required="required" placeholder="Another address" size="30" />
+    <a id="to-link" href="#">Get my position</a>
+    <br />
+  
+    <input type="submit" />
+    <input type="reset" />
+  </form>
