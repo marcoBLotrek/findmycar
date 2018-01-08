@@ -1,54 +1,84 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,ViewChild } from '@angular/core';
 import { GooglemapService} from './googlemap.service'
+declare var google: any;
 @Component({
   selector: 'app-googlemap',
   templateUrl: './googlemap.component.html',
   styleUrls: ['./googlemap.component.css']
 })
 export class GooglemapComponent implements OnInit {
- 
-  public map;
+
+
+  @ViewChild('map') map;
   public latitude: number;
   public longitude: number;
   public zoom: number;
-  
+  public num=0;
+  public marker =[];
+  public destination=[];
   vehicles = [];
   constructor(service: GooglemapService) { 
+   
     this.vehicles= service.getVehicle();
   }
   
   ngOnInit() {
+    this.destination[1]=new google.maps.LatLng(43.9320643,10.932747);
     this.map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 8
+      center: {lat: 10, lng: 20},
+      zoom: 15
     });
-    console.log(this.map);
+    this.setPoint(43.9320643,10.932747);
     this.setCurrentPosition();
   }
+
   private setCurrentPosition() {
-    console.log(this.map);
+ 
    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
+     alert('1');
+      navigator.geolocation.getCurrentPosition((position)=> {
         var pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
         console.log(pos);
-        
+        alert('2');
         this.map.setCenter(pos);
-      }, function() {
-        handleLocationError(true, infoWindow, map.getCenter());
+        alert('3');
       });
     } else {
       // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
+     // handleLocationError(false, infoWindow, map.getCenter());
     }
   }
+  /*private traceRoute(a)
+  {
+    var request= {
+      origin:this.destination[1],
+      destination:this.destination[a],
+      travelmode:"driving"
+    };
+    directionsService.route(request,function(result,status){
+      console.log(result,status);
+    })
+  }*/
   private setPoint(ltg,lng){
-   
-   this.latitude2=ltg;
-
-   this.longitude2=lng;
+    this.num=this.num+1;
+    var a=this.num;
+    var myLatlng = new google.maps.LatLng(ltg,lng);
+    this.marker[a] = new google.maps.Marker({
+        position: myLatlng,
+        title:"Hello World!"
+      });
+    this.destination[a]=new google.maps.LatLng(ltg,lng); 
+    this.marker[a].setMap(this.map);
+    if (a>1)
+    {
+      google.maps.event.addDomListener(this.marker[a], 'click', function() {
+        this.traceRoute(a);
+       });
+    }
+ 
   }
 
 }
