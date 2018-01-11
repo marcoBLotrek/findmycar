@@ -12,11 +12,12 @@ export class GooglemapService {
           license : 'a2',
           description : 'Motorino',
           street: 'via della torre 1, Pistoia',
-          longitude : 11, 
-          latitude : 10
+          longitude : 10.919013, 
+          latitude : 43.933675
         }
         ];
     getVehicle() {
         return this.vehicles;
     }
 }
+
