@@ -32,7 +32,8 @@ export class GooglemapComponent implements OnInit {
     this.destination[1]=new google.maps.LatLng(43.9320643,10.932747);
     this.map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 10, lng: 20},
-      zoom: 15
+      zoom: 15,
+      rotateControl:true
     });
     
     this.setCurrentPosition();

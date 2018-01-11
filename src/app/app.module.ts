@@ -8,6 +8,7 @@ import { AgmCoreModule } from '@agm/core';
 import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes }   from '@angular/router';
 import { GooglemapService } from './googlemap/googlemap.service';
+import { SetpositionComponent } from './setposition/setposition.component';
 const routes: Routes = [ {
     path:'',
     pathMatch:'full',
@@ -16,14 +17,19 @@ const routes: Routes = [ {
  {
     path:'login',
     component: LoginComponent
- }
+ },
+ {
+  path:'setposition',
+  component: SetpositionComponent
+}
 ];
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     GooglemapComponent,
-    LoginComponent
+    LoginComponent,
+    SetpositionComponent
   ],
   imports: [
     BrowserModule,
