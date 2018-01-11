@@ -16,6 +16,7 @@ export class GooglemapComponent implements OnInit {
   public num=0;
   public marker =[];
   public destination=[];
+  public pointToTrace;
   vehicles = [];
   public directionsService;
   public directionsDisplay;
@@ -49,29 +50,42 @@ export class GooglemapComponent implements OnInit {
         console.log(pos);
         
         this.map.setCenter(pos);
-        this.setPoint(pos.lat,pos.lng);
+        this.num=this.num+1;
+        this.destination[1]=pos;
+        this.traceRoute();
+        //this.setPoint(pos.lat,pos.lng);
       });
     } else {
+      alert(' Geo Localizzazione non supportata ');
       // Browser doesn't support Geolocation
      // handleLocationError(false, infoWindow, map.getCenter());
     }
   }
-  private traceRoute(a)
+
+  
+  private traceRoute()
   {
-    var request= {
-      origin:this.destination[1],
-      destination:this.destination[a],
-      travelMode:"DRIVING"
-    };
-    console.log(request);
-    this.directionsDisplay.setMap(this.map);
-    this.directionsService.route(request,(result,status)=>{
-      console.log(result,status);
-      if (status === google.maps.DirectionsStatus.OK) {
-        this.directionsDisplay.setDirections(result);
+   
+      var a=this.pointToTrace;
+      if (a>1)
+      {
+        
+        console.log(this.destination[a]);
+        var request= {
+          origin:this.destination[1],
+          destination:this.destination[a],
+          travelMode:"DRIVING"
+        };
+        console.log(request);
+        this.directionsDisplay.setMap(this.map);
+        this.directionsService.route(request,(result,status)=>{
+          console.log(result,status);
+          if (status === google.maps.DirectionsStatus.OK) {
+            this.directionsDisplay.setDirections(result);
+        }
+          
+        })
     }
-      
-    })
   }
   private setPoint(ltg,lng){
     this.num=this.num+1;
@@ -86,7 +100,8 @@ export class GooglemapComponent implements OnInit {
     if (a>1)
     {
       google.maps.event.addDomListener(this.marker[a], 'click', ()=> {
-        this.traceRoute(a);
+        this.pointToTrace=a;
+        this.traceRoute();
        });
     }
  
