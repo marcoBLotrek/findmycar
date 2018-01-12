@@ -2,25 +2,16 @@ import { Injectable } from "@angular/core";
 
 //@Injectable
 export class GooglemapService {
-    vehicles  = [ 
-        {
-            id:1,
-            license : 'a1',
-            description : 'Pandino',
-            street: 'via luigi galvani 15, Pistoia',
-            longitude : 10.932637,
-            latitude : 43.932985
-         
-        }, 
-        {
-            id:2,
-            license : 'a2',
-            description : 'Motorino',
-            street: 'via della torre 1, Pistoia',
-            longitude : 10.919013, 
-            latitude : 43.933675
-        }
-        ];
+    vehicles  = [];
+    setLocalstorage()
+    {
+        localStorage.setItem("dati", JSON.stringify(this.vehicles));
+    }
+    getLocalstorage()
+    {
+        this.vehicles=JSON.parse(localStorage.getItem("dati"));
+        //localStorage.setItem("dati", JSON.stringify(this.vehicles));
+    }
     getVehicle() {
         return this.vehicles;
     }
@@ -45,18 +36,20 @@ export class GooglemapService {
                             longitude:pos.lng,
                             latitude:pos.lat
                         }); 
+      this.setLocalstorage();                  
     }
     searchMaxid()
     {
       let maxId=0;
       let dim = this.vehicles.length; 
-
+        if (dim>0){
         for (var i = 0; i < dim; i++) {
             
             if (this.vehicles[i].id>maxId) {
              maxId=this.vehicles[i].id;
             }
-        }  
+        } 
+       } 
         return maxId;
     }
     searchIndex(id)

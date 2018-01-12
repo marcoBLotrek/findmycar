@@ -45,4 +45,4 @@ const routes: Routes = [ {
   providers: [GooglemapService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

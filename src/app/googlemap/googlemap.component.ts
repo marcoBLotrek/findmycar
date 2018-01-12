@@ -26,6 +26,7 @@ export class GooglemapComponent implements OnInit {
   public directionsDisplay;
 
   constructor(service: GooglemapService) { 
+    service.getLocalstorage();
     this.myservice=service;
     this.vehicles= service.getVehicle();
     this.directionsService=new google.maps.DirectionsService();
@@ -53,13 +54,11 @@ export class GooglemapComponent implements OnInit {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        console.log(pos);
         
         this.map.setCenter(pos);
         this.num=this.num+1;
         this.destination[1]=pos;
         this.traceRoute();
-        //this.setPoint(pos.lat,pos.lng);
       });
     } else {
       alert(' Geo Localizzazione non supportata ');
