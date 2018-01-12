@@ -1,11 +1,14 @@
 import { Component, OnInit, Input,ViewChild } from '@angular/core';
-import { GooglemapService} from './googlemap.service'
+import { GooglemapService} from '../services/googlemap.service'
+
 declare var google: any;
+
 @Component({
   selector: 'app-googlemap',
   templateUrl: './googlemap.component.html',
   styleUrls: ['./googlemap.component.css']
 })
+
 export class GooglemapComponent implements OnInit {
 
 
@@ -17,11 +20,13 @@ export class GooglemapComponent implements OnInit {
   public marker =[];
   public destination=[];
   public pointToTrace;
+  public myservice;
   vehicles = [];
   public directionsService;
   public directionsDisplay;
+
   constructor(service: GooglemapService) { 
-   
+    this.myservice=service;
     this.vehicles= service.getVehicle();
     this.directionsService=new google.maps.DirectionsService();
     this.directionsDisplay=new google.maps.DirectionsRenderer();
@@ -43,7 +48,7 @@ export class GooglemapComponent implements OnInit {
  
    if (navigator.geolocation) {
      
-      navigator.geolocation.watchPosition((position)=> {
+      navigator.geolocation.getCurrentPosition((position)=> {
         var pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
@@ -58,12 +63,13 @@ export class GooglemapComponent implements OnInit {
       });
     } else {
       alert(' Geo Localizzazione non supportata ');
-      // Browser doesn't support Geolocation
-     // handleLocationError(false, infoWindow, map.getCenter());
     }
   }
 
-  
+  /*private changePos(id,pos)
+  {
+    this.myservice.changePos(id);
+  }*/
   private traceRoute()
   {
    
@@ -93,8 +99,7 @@ export class GooglemapComponent implements OnInit {
     var a=this.num;
     var myLatlng = new google.maps.LatLng(ltg,lng);
     this.marker[a] = new google.maps.Marker({
-        position: myLatlng,
-        title:"Hello World!"
+        position: myLatlng
       });
     this.destination[a]=new google.maps.LatLng(ltg,lng); 
     this.marker[a].setMap(this.map);

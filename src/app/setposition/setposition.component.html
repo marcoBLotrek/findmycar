@@ -33,13 +33,32 @@
     <div class="card-header" role="tab" id="headingTwo">
       <h5 class="mb-0">
         <a class="collapsed" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">
-          Ho già registrato la posizione di questo veicolo
+          Ho già registrato questo veicolo
         </a>
       </h5>
     </div>
     <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body">
-        <button type="submit" class="btn btn-primary">Registra</button>
+          <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Targa</th>
+                  <th scope="col">Descrizione</th>
+                  <th scope="col">Registra</th>
+                </tr>
+              </thead>
+              <tbody>
+              
+                <tr *ngFor="let vehicle of vehicles">
+                    <td>{{vehicle.license}}</td>
+                    <td>{{vehicle.description}}</td>
+                    <td> <a class="btn btn-primary" (click)="recPosition(vehicle.id)">Registra</a></td>
+                  </tr>
+               
+              </tbody>
+            </table>
+          
+        
       </div>
     </div>
   </div>

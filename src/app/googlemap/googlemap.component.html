@@ -5,13 +5,13 @@
         <th scope="col">#</th>
         <th scope="col">Targa</th>
         <th scope="col">Descrizione</th>
-        <th scope="col">Via</th>
+        <th scope="col">Dettagli</th>
       </tr>
     </thead>
     <tbody>
     
       <tr *ngFor="let vehicle of vehicles">
-          <th scope="row"><a (click)="setPoint(vehicle.latitude,vehicle.longitude)">F</a></th>
+          <th scope="row"><a (click)="setPoint(vehicle.latitude,vehicle.longitude);">F</a></th>
           <td>{{vehicle.license}}</td>
           <td>{{vehicle.description}}</td>
           <td>{{vehicle.street}} </td>
