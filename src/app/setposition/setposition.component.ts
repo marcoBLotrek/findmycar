@@ -23,7 +23,7 @@ export class SetpositionComponent implements OnInit {
   {
     if (navigator.geolocation) {
      
-      navigator.geolocation.watchPosition((position)=> {
+      navigator.geolocation.getCurrentPosition((position)=> {
         var pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
@@ -37,5 +37,4 @@ export class SetpositionComponent implements OnInit {
     }
   }
 
-  }
 }
