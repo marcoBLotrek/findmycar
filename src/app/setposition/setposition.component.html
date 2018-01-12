@@ -10,22 +10,22 @@
 
     <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
-        <form>
+        
           <div class="form-group">
             <label for="targa">Targa</label>
-            <input type="text" class="form-control" id="targa" placeholder="metti la targa">
+            <input type="text" class="form-control" id="targa" [(ngModel)]="targa" placeholder="metti la targa">
           </div>
           <div class="form-group">
             <label for="descrizione">Descrizione del mezzo</label>
-            <input type="text" class="form-control" id="descrizione" placeholder="descrizione del veicolo">
+            <input type="text" class="form-control" id="descrizione" [(ngModel)]="descrizione" placeholder="descrizione del veicolo">
           </div>
           <div class="form-group">
             <label for="descrizione">Via</label>
-            <input type="text" class="form-control" id="via" placeholder="inserisci la via">
+            <input type="text" class="form-control" id="via" [(ngModel)]="via" placeholder="inserisci la via">
           </div>
 
-          <button type="submit" class="btn btn-primary">Registra</button>
-        </form>
+          <button type="button" class="btn btn-primary" (click)="onSubmit()">Registra</button>
+        
       </div>
     </div>
   </div>

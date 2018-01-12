@@ -7,6 +7,8 @@ import { GooglemapComponent } from './googlemap/googlemap.component';
 import { AgmCoreModule } from '@agm/core';
 import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes }   from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 //import { GooglemapService } from './googlemap/googlemap.service';
 import { SetpositionComponent } from './setposition/setposition.component';
 const routes: Routes = [ {
@@ -33,6 +35,7 @@ const routes: Routes = [ {
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA_W0qvHg9HG7quDxXvkjmeDwMXy8gS-5U',
       libraries: ["places"]

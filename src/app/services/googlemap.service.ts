@@ -33,7 +33,33 @@ export class GooglemapService {
         this.vehicles[index].longitude=pos.lng;
         
     }
-   searchIndex(id)
+    insertVehicle(license,description,street,pos)
+    {
+     let id=this.searchMaxid();
+         if (id>0) id++;
+     this.vehicles.push({
+                            id: id,
+                            license: license,
+                            description:description,
+                            street:street,
+                            longitude:pos.lng,
+                            latitude:pos.lat
+                        }); 
+    }
+    searchMaxid()
+    {
+      let maxId=0;
+      let dim = this.vehicles.length; 
+
+        for (var i = 0; i < dim; i++) {
+            
+            if (this.vehicles[i].id>maxId) {
+             maxId=this.vehicles[i].id;
+            }
+        }  
+        return maxId;
+    }
+    searchIndex(id)
     {  
       
         let dim = this.vehicles.length; 
